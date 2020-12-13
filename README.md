@@ -12,6 +12,21 @@ It's also a bit nicer as I can just shut it down and keep an image displaying, w
 3. Make appropriate crops (face finder is quite tight, so we have to work out how to widen the crop to be something 'nice') 
 4. Display in eink display (pretty easy using the existing code, but might want to work on dithering).
 
+The functionality can be nicely split into 3 scripts
+
+1. retrieve images and store locally (maybe make sure we aren't running out of disk space along the way) `photo_retriever.py`
+2. Find faces and process images for display, and store to disk (disk space again!) `photo_processor.py`
+3. pick an image and display it. `photo_display.py`
+
+In theory 1 and two could be the same scripts, but seperating them means we could manually insert images and process them or have script 1 run at different points for different sources. 
+
+we should avoid excessive load so:
+
+- no downloading images that are already stored locally
+- don't process images that have already been processed
+- make it quick to find all the image and process them
+- don't require a database for keeping track of where we are 
+
 ## Hardware
 - Raspberry Pi Zero ( https://shop.pimoroni.com/products/raspberry-pi-zero-wh-with-pre-soldered-header ) 
 - Inky What (Black)( https://shop.pimoroni.com/products/inky-what?variant=21214020436051 )
