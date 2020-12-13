@@ -59,19 +59,38 @@ Then started hacking... TBC.
 ## Notes for Hacking all the parts together
 
 - I'm doing this in `~`
-- install opencv depdendencies (this was helpful https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/ ):  `sudo apt install -y build-essential cmake g++ wget unzip pkg-config libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libcanberra-gtk* libatlas-base-dev gfortran python3-dev` 
+- install opencv depdendencies (this was helpful https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/ ): 
+  
+  `sudo apt install -y build-essential cmake g++ wget unzip pkg-config libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libcanberra-gtk* libatlas-base-dev gfortran python3-dev` 
 - Raspbian currently default to Python 2.7 (no longer upgraded) so want to use Python 3.
-- Install python virtualenv `apt install pytyhon-virtualenv`
-- Install this repo from git `git clone https://github.com/dorianfm/photostreamer.git` (or if you have a git account and ssh access setup `git clone git@github.com/dorianfm/photostreamer.git`)
+- Install python virtualenv 
+  
+  `apt install pytyhon-virtualenv`
+- Install this repo from git 
+  `git clone https://github.com/dorianfm/photostreamer.git` (or if you have a git account and ssh access setup `git clone git@github.com/dorianfm/photostreamer.git`)
 - `cd photostreamer`
-- `virtualenv -p /usr/bin/python3 .` creates python virtual env in current folder
-- activate the virtual env - this means any python packages we install or are installed are only available within this envrionment `source bin/activate` 
-- install all the appropriate python libs for the inky from https://github.com/pimoroni/inky `pip3 install inky[rpi,fonts]` 
-- install opencv ( https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html ) 
-  - make an opencv directory, download and uncompress latest release source: `mkdir opencv && cd opencv && wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/master.zip && unzip opencv.zip && unzip opencv_contrib.zip` (wait...) 
-  - build opencv `mkdir build && cd build && cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-master/modules ../opencv-master && cmake --build .` (... compiling ... https://xkcd.com/303/ ... it's a long wait...) 
-- install the python opencv libs ``
+- create a python virtual environment in current folder: 
 
+  `virtualenv -p /usr/bin/python3 .`
+- activate the virtual env - this means any python packages we install or are installed are only available within this envrionment: 
+
+  `source bin/activate`  
+- install all the appropriate python libs for the inky from https://github.com/pimoroni/inky 
+
+  `pip3 install inky[rpi,fonts]` 
+- install opencv ( https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html ) 
+  - make an opencv directory, download and uncompress latest release source: 
+  
+    `mkdir opencv && cd opencv && wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/master.zip && unzip opencv.zip && unzip opencv_contrib.zip` 
+    (wait...) 
+  - build opencv 
+    
+    `mkdir build && cd build && cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-master/modules ../opencv-master && cmake --build .` 
+    (... compiling ... https://xkcd.com/303/ ... it's a long wait...) 
+- install the python opencv libs ``
+- grab the opencv face classifier from  https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml 
+  
+  `wget -O haarcascade_frontalface_default.xml https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml`
 
 
 
