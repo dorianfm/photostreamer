@@ -29,6 +29,24 @@ As the Inky What drivers exist in Python, and there are OpenCV bindings for Pyth
 Pros: All the bits exist
 Cons : my python ain't great - it will be a learning experience. 
 
+## Setting it up
+
+There are already loads of tutorials on setting up a raspberry pi and getting it onto your network. I'm using the latest Raspbian, and after imaging my SD card I enabled wifi and SSH withiout attaching a montitor, using this for pointers: https://www.taygan.co/blog/2018/03/08/setup-a-raspberry-pi-with-no-keyboard-or-monitor-headless 
+
+I then did the usual log in, upgrade securirty (change password for pi, add ssh keys, disable password login-  If you don't know why I did all that I'd advise you go do some research ;-). 
+
+Then upgraded all the base pacakges ( `sudo apt update; sudo apt dist-upgrade -y`), installed git from apt and rmate (from https://github.com/textmate/rmate ) so I can easily edit files in Visual Studio Code ( https://code.visualstudio.com/ ) on my desktop as Code's Remote functionality makes the Pi churn like a butter maker. 
+
+Installed the pimoroni drivers for the Inky per https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-what
+
+The started hacking... TBC.
+
+
+
+
+
+
+
 
 --
 
