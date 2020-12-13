@@ -1,5 +1,5 @@
 # Photo Streamer
-Digital Picture Frame App to grab images, identifty faces, crop, and display on eInk display
+**Digital Picture Frame App to grab images, identifty faces, crop, and display on eInk display**
 
 I don't really like digital picture frames because they are backlit and look too much like normal screens, but I wanted to show photos in a nice, slightly arty, way, so I am building this to mount into a proper small picture as an ambient family album. Because of the low resolution of the display, and because dithering is required to emulate grayscales, I want to just display faces from our family photo alubms, so I'm going to find a way to crop into these nicely then zoom out a bit.
 
@@ -39,7 +39,7 @@ Then upgraded all the base pacakges ( `sudo apt update; sudo apt dist-upgrade -y
 
 Installed the pimoroni drivers for the Inky per https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-what
 
-The started hacking... TBC.
+Then started hacking... TBC.
 
 
 
