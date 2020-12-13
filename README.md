@@ -62,8 +62,8 @@ Then started hacking... TBC.
 - install opencv depdendencies (this was helpful https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/ ): 
   
   `sudo apt install -y build-essential cmake g++ wget unzip pkg-config libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libcanberra-gtk* libatlas-base-dev gfortran python3-dev` 
-- Raspbian currently default to Python 2.7 (no longer upgraded) so want to use Python 3.
-- Install python virtualenv 
+- increase swapspace edit `/etc/dphys-swpfile` and change `CONF_SWAPSIZE` to `2048`; then run `sudo dphys-swapfile setup` to apply the changes (no reboot required)
+- Raspbian currently default to Python 2.7 (no longer upgraded) so want to use Python 3; Install python virtualenv 
   
   `apt install pytyhon-virtualenv`
 - Install this repo from git 
