@@ -78,15 +78,15 @@ Then started hacking... TBC.
 - install all the appropriate python libs for the inky from https://github.com/pimoroni/inky 
 
   `pip3 install inky[rpi,fonts]` 
-- ~~ install opencv ( https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html ) 
-  - ~~ make an opencv directory, download and uncompress latest release source: 
+- ~~install opencv ( https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html )~~
+  - ~~ make an opencv directory, download and uncompress latest release source:~~ 
   
-    ~~ `mkdir opencv && cd opencv && wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/master.zip && unzip opencv.zip && unzip opencv_contrib.zip` 
-    ~~ (wait...) 
-  - ~~ build opencv 
+    ~~`mkdir opencv && cd opencv && wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/master.zip && unzip opencv.zip && unzip opencv_contrib.zip`~~ 
+    ~~(wait...)~~ 
+  - ~~build opencv~~ 
     
-    ~~ `mkdir build && cd build && cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-master/modules ../opencv-master && cmake --build .` 
-    ~~ (... compiling ... https://xkcd.com/303/ ... it's a long wait... really long... like I'm going to bed and hoping it's done by the morning... ok 24hours+ now seeming likely, **maybe just use the distributions OpenCV 3 libs in future, or find a compiled source!**) 
+    ~~`mkdir build && cd build && cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-master/modules ../opencv-master && cmake --build .`~~
+    ~~(... compiling ... https://xkcd.com/303/ ... it's a long wait... really long... like I'm going to bed and hoping it's done by the morning... ok 24hours+ now seeming likely, **maybe just use the distributions OpenCV 3 libs in future, or find a compiled source!**)~~
     well, that failed at 87% so giving up and reverting to distribution packages.
 - install the python opencv libs ``
 - grab the opencv face classifier from  https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml 
