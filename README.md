@@ -63,6 +63,8 @@ Then started hacking... TBC.
   
   `sudo apt install -y build-essential cmake g++ wget unzip pkg-config libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libcanberra-gtk* libatlas-base-dev gfortran python3-dev` 
 - increase swapspace edit `/etc/dphys-swpfile` and change `CONF_SWAPSIZE` to `2048`; then run `sudo dphys-swapfile setup` to apply the changes (no reboot required)
+- ~~install the python opencv (3.2) libs from distribuition `apt install -y python3-opencv`~~
+
 - Raspbian currently default to Python 2.7 (no longer upgraded) so want to use Python 3; Install python virtualenv 
   
   `apt install pytyhon-virtualenv`
@@ -78,16 +80,17 @@ Then started hacking... TBC.
 - install all the appropriate python libs for the inky from https://github.com/pimoroni/inky 
 
   `pip3 install inky[rpi,fonts]` 
-- install opencv ( https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html ) 
-  - make an opencv directory, download and uncompress latest release source: 
+- ~~install opencv ( https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html )~~
+  - ~~ make an opencv directory, download and uncompress latest release source:~~ 
   
-    `mkdir opencv && cd opencv && wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/master.zip && unzip opencv.zip && unzip opencv_contrib.zip` 
-    (wait...) 
-  - build opencv 
+    ~~`mkdir opencv && cd opencv && wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/master.zip && unzip opencv.zip && unzip opencv_contrib.zip`~~ 
+    ~~(wait...)~~ 
+  - ~~build opencv~~ 
     
-    `mkdir build && cd build && cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-master/modules ../opencv-master && cmake --build .` 
-    (... compiling ... https://xkcd.com/303/ ... it's a long wait... really long... like I'm going to bed and hoping it's done by the morning) 
-- install the python opencv libs ``
+    ~~`mkdir build && cd build && cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-master/modules ../opencv-master && cmake --build .`~~
+    ~~(... compiling ... https://xkcd.com/303/ ... it's a long wait... really long... like I'm going to bed and hoping it's done by the morning... ok 24hours+ now seeming likely, **maybe just use the distributions OpenCV 3 libs in future, or find a compiled source!**)~~
+    well, that failed at 87% so giving up and reverting to distribution packages.
+- install opencv `pip3 install opencv-python` i should not have RTFM and don't that in the first instance. FML.   
 - grab the opencv face classifier from  https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml 
   
   `wget -O haarcascade_frontalface_default.xml https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml`
