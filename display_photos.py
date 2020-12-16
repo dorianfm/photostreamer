@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/pi/photostreamer/bin/python
 
 from PIL import Image
 from inky import InkyWHAT
@@ -51,9 +51,18 @@ def show_image(img_file):
     inky_display.show()
     img.close()
 
+def find_image_files(directory):
+    return find_files(directory,('*.jpg','*.jpeg','*.JPG', '*.PNG','*.png'))
+
+def find_files(directory, types):
+    files = []
+    for glob in types:
+        for path in Path(directory).rglob(glob):
+            files.append(path.absolute().as_posix())
+    return files
+
 def main():
-    for path in Path(source_dir()).rglob('*.jpg'):
-        source_path = path.absolute().as_posix()
+    for source_path in find_image_files(source_dir()):
         show_image(source_path)
         sleep(1)
     main();
