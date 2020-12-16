@@ -1,24 +1,18 @@
-#!/bin/env python3
+#!/home/pi/photostreamer/bin/python
 import os
 import re
 import cv2
 import numpy
+import photostreamer
 
 from pathlib import Path
 
 target_width = 300
 target_height = 400;
 
-
-def source_dir():
-    return os.path.dirname(os.path.realpath(__file__))+'/source_images/'
-
-def target_dir():
-    return os.path.dirname(os.path.realpath(__file__))+'/processed_images/'
-
 def target_path(source_path, offset):
     path = append_id(source_path, offset)
-    path = path.replace(source_dir(), target_dir())
+    path = path.replace(photostreamer.source_dir(), photostreamer.processed_dir())
     return path
 
 def append_id(filename, id):
@@ -55,7 +49,7 @@ def process_face(face, source_image, source_path, offset):
     target = target_path(source_path, offset)
     save_target(face_image, target)
     # mark as proccessed
-    # mark_processed(source_path)
+    mark_processed(source_path)
 
 def save_target(image, file_path):
     if not os.path.exists(os.path.dirname(file_path)):
@@ -89,7 +83,7 @@ def process_image(source_path):
     process_faces(faces, image, source_path)
 
 def process_images(directory):
-    image_files = find_image_files(directory)
+    image_files = photostreamer.find_image_files(directory)
     for source_path in image_files:
         if not is_processed(source_path):
             process_image(source_path)
@@ -97,12 +91,4 @@ def process_images(directory):
 def find_image_files(directory):
     return find_files(directory,('*.jpg','*.jpeg','*.JPG', '*.PNG','*.png'))
 
-def find_files(directory, types):
-    files = []
-    for glob in types:
-        for path in Path(directory).rglob(glob):
-            files.append(path.absolute().as_posix())
-    return files
-
-
-process_images(source_dir())
+process_images(photostreamer.source_dir())

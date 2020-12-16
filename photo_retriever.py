@@ -1,10 +1,10 @@
-#!/bin/env python3
+#!/home/pi/photostreamer/bin/python
 import os
 import re
 import feedparser
 import urllib
 from bs4 import BeautifulSoup
-
+import photostreamer
 
 def extract_image_urls(string):
     soup = BeautifulSoup(string, 'html.parser')
@@ -24,8 +24,8 @@ def retrieve_image(from_url, to_dir):
     if not os.path.exists(target_path):
         urllib.request.urlretrieve(from_url, target_path)
 
-feed = feedparser.parse('https://www.fraser-moore.com/diary/rss?l=500')
+feed = feedparser.parse('https://www.fraser-moore.com/diary/rss')
 for entry in feed.entries:
     urls = extract_image_urls(entry.description)
-    retrieve_images(urls, os.path.dirname(os.path.realpath(__file__))+'/source_images/')
+    retrieve_images(urls, photostreamer.source_dir())
 
