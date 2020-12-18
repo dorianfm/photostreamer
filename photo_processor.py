@@ -74,6 +74,8 @@ def calculate_crop(image, face):
     return (int(center_x - target_width/2), int(center_y - target_width/2), target_width, target_height);
 
 def process_image(source_path):
+    if is_processed(source_path):
+        return
     print(source_path)
     #print(source_path)
     image=cv2.imread(source_path)
