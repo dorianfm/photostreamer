@@ -34,14 +34,13 @@ def show_image(img_file):
     y1 = h_new
 
     # Crop image
-    cropped_img = img.crop((x0, y0, x1, y1))
+    cropped_img = img.crop((x0, y0, x1, y1)).convert("LA")
 
     # Convert the image to use a white / black colour palette
     pal_img = Image.new("P", (1, 1))
     pal_img.putpalette((255, 255, 255, 0, 0, 0, 255, 0, 0) + (0, 0, 0) * 252)
 
     bw_img = cropped_img.convert("RGB").quantize(palette=pal_img)
-
     # Display the final image on Inky wHAT
     inky_display.set_image(bw_img)
     inky_display.show()
@@ -56,7 +55,7 @@ def main():
     random.shuffle(images)
     for source_path in images:
         show_image(source_path)
-        sleep(1)
+        sleep(600)
     main();
 
 main();
