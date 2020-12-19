@@ -5,4 +5,4 @@ opencv
 source_images/*
 processed_images/*
 share
-haarcascade_frontalface_default.xml
+__pycache__
