@@ -16,4 +16,5 @@ sgmllib3k==1.0.0
 smbus2==0.4.0
 soupsieve==2.1
 spidev==3.5
+uWSGI==2.0.19.1
 Werkzeug==1.0.1

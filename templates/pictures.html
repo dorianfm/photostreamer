@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pictures</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<form action="" method="post">
+
+<header>
+    <h1>Pictures {{ offset+1 }} - {{ offset+length }} / {{ count }}</h1>
+    <nav class="pages">
+        <ul class="pages_list">
+            {% for p in range(0,(count/length)|int) %}
+                <li class="page_index {% if offset == p*length %}current{% endif %}">
+                    <a href="/page/{{ p*length }}" class="page_link">{{ p }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+      <li class="message">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<ul class="grid">
+{% for path in pictures %}
+    <li class="grid_item">
+        <div class="sizer"></div>
+        <label class="wrapper">
+            <input type="checkbox" name="selection" value="{{ path }}" id="">
+            <img src="{{ path|replace("/home/pi/photostreamer",'')|urlencode }}">
+        </label>
+    </li>
+{% endfor %}
+</ul>
+<button name="action" value="delete">Remove Selected Images</button>
+</form>
+</body>
+</html>
