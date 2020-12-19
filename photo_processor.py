@@ -48,8 +48,6 @@ def process_face(face, source_image, source_path, offset):
     # scale
     target = target_path(source_path, offset)
     save_target(face_image, target)
-    # mark as proccessed
-    mark_processed(source_path)
 
 def save_target(image, file_path):
     if not os.path.exists(os.path.dirname(file_path)):
@@ -83,6 +81,8 @@ def process_image(source_path):
     # find face
     faces = find_faces(image)
     process_faces(faces, image, source_path)
+    mark_processed(source_path)
+
 
 def process_images(directory):
     image_files = photostreamer.find_image_files(directory)
