@@ -2,12 +2,13 @@
 
 import os
 import re
-from pathlib import Path
+import random
 
+from pathlib import Path
+from time import sleep
 from PIL import Image
 from inky.inky_uc8159 import Inky
-import random
-from time import sleep
+
 import photostreamer
 
 inky = Inky()
@@ -15,13 +16,14 @@ tw = 600
 th = 448
 
 def show_image(img_path):
-    img = cover(Image.open(img_path), tw, th)
+    print (img_path)
+    img = photostreamer.image_cover(Image.open(img_path), tw, th)
     saturation = 0.5
 
     inky.set_image(img, saturation=saturation)
     inky.show()
 
-def cover(img, tw, th):
+def image_cover(img, tw, th):
     w, h = img.size
     nw = tw
     nh = int((tw/w)*h)
@@ -42,7 +44,7 @@ def cover(img, tw, th):
     return img.crop(box)
 
 def main():
-    images = photostreamer.find_image_files(photostreamer.source_dir())
+    images = photostreamer.find_image_files(photostreamer.processed_dir())
     random.shuffle(images)
     for source_path in images:
         show_image(source_path)
