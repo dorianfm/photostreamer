@@ -53,3 +53,14 @@ def is_processed(path):
 
 def mark_processed(path):
     Path(path+'.processed').touch()
+
+def file_append_id(filename, id):
+    p = Path(filename)
+    r = p.with_name(f"{p.stem}-{id}{p.suffix}").as_posix()
+    return r;
+
+def target_path(source_path, offset):
+    if offset > 0:
+        source_path = photostreamer.file_append_id(source_path, offset)
+    source_path = source_path.replace(photostreamer.source_dir(), photostreamer.processed_dir())
+    return source_path

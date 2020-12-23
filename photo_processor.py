@@ -10,16 +10,6 @@ from pathlib import Path
 target_width = 300
 target_height = 400;
 
-def target_path(source_path, offset):
-    path = append_id(source_path, offset)
-    path = path.replace(photostreamer.source_dir(), photostreamer.processed_dir())
-    return path
-
-def append_id(filename, id):
-    p = Path(filename)
-    r = p.with_name(f"{p.stem}-{id}{p.suffix}").as_posix()
-    return r;
-
 def find_faces(image):
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml');
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -40,7 +30,7 @@ def process_face(face, source_image, source_path, offset):
     # crop
     face_image = source_image[y:y+h, x:x+w].copy()
     # scale
-    target = target_path(source_path, offset)
+    target = photostreamer.target_path(source_path, offset)
     save_target(face_image, target)
 
 def save_target(image, file_path):
@@ -83,8 +73,5 @@ def process_images(directory):
     for source_path in image_files:
         if not photostreamer.is_processed(source_path):
             process_image(source_path)
-
-def find_image_files(directory):
-    return find_files(directory,('*.jpg','*.jpeg','*.JPG', '*.PNG','*.png'))
 
 process_images(photostreamer.source_dir())
