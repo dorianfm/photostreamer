@@ -46,7 +46,7 @@ def main():
     random.shuffle(images)
     for source_path in images:
         show_image(source_path)
-        sleep(5)
+        sleep(600)
     main();
 
 main();
