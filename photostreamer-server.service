@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve photostreamer
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory=/home/pi/photostreamer
+Environment="PATH=/home/pi/photostreamer/bin"
+ExecStart=/home/pi/photostreamer/bin/uwsgi --ini photostreamer.ini
+
+[Install]
+WantedBy=multi-user.target
