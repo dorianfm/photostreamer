@@ -47,3 +47,9 @@ def image_cover(img, tw, th):
     box = (x,y , x+tw, y+th)
     box = (0, 0, 600, 448)
     return img.crop(box)
+
+def is_processed(path):
+    return os.path.exists(path+'.processed')
+
+def mark_processed(path):
+    Path(path+'.processed').touch()

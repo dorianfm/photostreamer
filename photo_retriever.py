@@ -18,10 +18,10 @@ def retrieve_images(from_urls, to_dir):
 
 def retrieve_image(from_url, to_dir):
     target_path, changes = re.compile('^https?://').subn(to_dir, from_url)
-    print(from_url+' => '+target_path)
     if not os.path.exists(os.path.dirname(target_path)):
         os.makedirs(os.path.dirname(target_path),0o775)
-    if not os.path.exists(target_path):
+    if not os.path.exists(target_path) and not photostreamer.is_processed(target_path):
+        print(from_url+' => '+target_path)
         urllib.request.urlretrieve(from_url, target_path)
 
 feed = feedparser.parse('https://www.fraser-moore.com/diary/rss')
