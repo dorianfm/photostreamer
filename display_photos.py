@@ -1,4 +1,4 @@
-#!/home/pi/photostreamer/bin/python
+#!/home/dorian/bwframe/bin/python
 
 import os
 import re
