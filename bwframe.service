@@ -10,7 +10,7 @@ StartLimitBurst=5
 Restart=on-failure
 RestartSec=5s
 
-ExecStart=/home/pi/photostreamer/display_photos.py
+ExecStart=/home/dorian/bwframe/display_photos.py
 
 [Install]
 WantedBy=multi-user.target

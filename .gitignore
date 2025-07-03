@@ -6,3 +6,4 @@ source_images/*
 processed_images/*
 share
 __pycache__
+pyvenv.cfg
