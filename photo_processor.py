@@ -10,22 +10,6 @@ from pathlib import Path
 target_width = 300
 target_height = 400;
 
-def target_path(source_path, offset):
-    path = append_id(source_path, offset)
-    path = path.replace(photostreamer.source_dir(), photostreamer.processed_dir())
-    return path
-
-def append_id(filename, id):
-    p = Path(filename)
-    r = p.with_name(f"{p.stem}-{id}{p.suffix}").as_posix()
-    return r;
-
-def is_processed(path):
-    return os.path.exists(path+'.processed')
-
-def mark_processed(path):
-    Path(path+'.processed').touch()
-
 def find_faces(image):
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml');
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -46,7 +30,7 @@ def process_face(face, source_image, source_path, offset):
     # crop
     face_image = source_image[y:y+h, x:x+w].copy()
     # scale
-    target = target_path(source_path, offset)
+    target = photostreamer.target_path(source_path, offset)
     save_target(face_image, target)
 
 def save_target(image, file_path):
@@ -72,7 +56,7 @@ def calculate_crop(image, face):
     return (int(center_x - target_width/2), int(center_y - target_width/2), target_width, target_height);
 
 def process_image(source_path):
-    if is_processed(source_path):
+    if photostreamer.is_processed(source_path):
         return
     print(source_path)
     #print(source_path)
@@ -81,16 +65,13 @@ def process_image(source_path):
     # find face
     faces = find_faces(image)
     process_faces(faces, image, source_path)
-    mark_processed(source_path)
+    photostreamer.mark_processed(source_path)
 
 
 def process_images(directory):
     image_files = photostreamer.find_image_files(directory)
     for source_path in image_files:
-        if not is_processed(source_path):
+        if not photostreamer.is_processed(source_path):
             process_image(source_path)
-
-def find_image_files(directory):
-    return find_files(directory,('*.jpg','*.jpeg','*.JPG', '*.PNG','*.png'))
 
 process_images(photostreamer.source_dir())
